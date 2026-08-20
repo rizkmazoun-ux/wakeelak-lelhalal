@@ -710,8 +710,7 @@
     // Validation
     if (!groomName) { alert('من فضلك أدخل اسم العريس'); return; }
     if (!groomPhone) { alert('من فضلك أدخل رقم التليفون'); return; }
-    if (!/^01\\d{9}$/.test(groomPhone)) { alert('من فضلك أدخل رقم موبايل مصري صحيح من 11 رقمًا ويبدأ بـ 01'); return; }
-    if (groomPhone2 && !/^01\\d{9}$/.test(groomPhone2)) { alert('من فضلك راجع الرقم البديل'); return; }
+    if (!/^01\d{9}$/.test(groomPhone)) { alert('من فضلك أدخل رقم موبايل مصري صحيح من 11 رقمًا ويبدأ بـ 01'); return; }
     if (!eventDate) { alert('من فضلك أدخل تاريخ عقد الزواج'); return; }
     if (!eventTime) { alert('من فضلك أدخل موعد عقد الزواج'); return; }
     if (!area) { alert('من فضلك اختر منطقة عقد الزواج'); return; }
@@ -720,6 +719,7 @@
     const address = document.getElementById('address').value.trim();
     const notes = document.getElementById('notes').value.trim();
     const groomPhone2 = document.getElementById('groomPhone2').value.trim();
+    if (groomPhone2 && !/^01\d{9}$/.test(groomPhone2)) { alert('من فضلك راجع الرقم البديل'); return; }
     const brideName = document.getElementById('brideName').value.trim();
     const brideAge = document.getElementById('brideAge').value.trim();
     const brideGuardian = document.getElementById('brideGuardian').value.trim();
