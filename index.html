@@ -386,7 +386,7 @@
     font-family: 'Cairo', sans-serif;
     font-size: 17px;
     font-weight: 700;
-    color: var(--dark);
+    color: var(--navy);
     cursor: pointer;
     margin-top: 10px;
     transition: all 0.3s ease;
@@ -515,7 +515,7 @@
       <div class="cover-brand">سهّلها واتجوز</div>
       <div class="cover-badge">وكيل مأذون بالقاهرة</div>
       <div class="cover-line"></div>
-      <div class="cover-title">نِسَهّل عليك إجراءات عقد الزواج</div>
+      <div class="cover-title">نُسهّل عليك إجراءات عقد الزواج</div>
       <div class="cover-subtitle">تجهيز العقد • مراجعة المستندات • متابعة إجراءات التوثيق</div>
       <div class="cover-location">📍 بنجيلك في المكان المناسب ليك داخل القاهرة</div>
     </div>
@@ -542,17 +542,17 @@
 
     <div class="form-group">
       <label><span class="required">*</span> اسم العريس</label>
-      <input type="text" id="groomName" placeholder="الاسم بالكامل" />
+      <input type="text" id="groomName" name="groomName" autocomplete="name" placeholder="الاسم بالكامل" />
     </div>
 
     <div class="two-col">
       <div class="form-group">
         <label><span class="required">*</span> رقم التليفون</label>
-        <input type="tel" id="groomPhone" placeholder="01XXXXXXXXX" />
+        <input type="tel" id="groomPhone" name="groomPhone" autocomplete="tel" inputmode="tel" maxlength="11" placeholder="01XXXXXXXXX" />
       </div>
       <div class="form-group">
         <label>رقم بديل (اختياري)</label>
-        <input type="tel" id="groomPhone2" placeholder="01XXXXXXXXX" />
+        <input type="tel" id="groomPhone2" name="groomPhone2" autocomplete="tel" inputmode="tel" maxlength="11" placeholder="01XXXXXXXXX" />
       </div>
     </div>
 
@@ -606,23 +606,23 @@
 
     <div class="form-group">
       <label><span class="required">*</span> اسم العروسة</label>
-      <input type="text" id="brideName" placeholder="الاسم بالكامل" />
+      <input type="text" id="brideName" name="brideName" autocomplete="off" placeholder="الاسم بالكامل" />
     </div>
 
     <div class="two-col">
       <div class="form-group">
         <label><span class="required">*</span> سن العروسة</label>
-        <input type="number" id="brideAge" placeholder="مثال: 24" min="18" max="60" />
+        <input type="number" id="brideAge" name="brideAge" inputmode="numeric" placeholder="مثال: 24" min="18" max="60" />
       </div>
       <div class="form-group">
         <label><span class="required">*</span> اسم الولي</label>
-        <input type="text" id="brideGuardian" placeholder="اسم ولي الأمر" />
+        <input type="text" id="brideGuardian" name="brideGuardian" autocomplete="off" placeholder="اسم ولي الأمر" />
       </div>
     </div>
 
     <div class="form-group">
       <label><span class="required">*</span> عنوان العروسة</label>
-      <input type="text" id="brideAddress" placeholder="الحي والشارع والمحافظة" />
+      <input type="text" id="brideAddress" name="brideAddress" autocomplete="street-address" placeholder="الحي والشارع والمحافظة" />
     </div>
 
     <div class="sep"></div>
@@ -673,9 +673,10 @@
     <h3>تم تجهيز طلب الحجز!</h3>
     <p>
       شكرًا لك، تم تجهيز بيانات الحجز.<br>
-      هنتواصل معاك على واتساب لتأكيد الموعد ومراجعة التفاصيل 🎉
+      هنتواصل معاك على واتساب لتأكيد الموعد ومراجعة التفاصيل 🎉<br>
+      لو لم يفتح واتساب تلقائيًا، اضغط الزر بالأسفل.
     </p>
-    <a class="whatsapp-btn" id="waLink" href="#" target="_blank">
+    <a class="whatsapp-btn" id="waLink" href="#" target="_blank" rel="noopener noreferrer">
       💬 &nbsp; تواصل على واتساب مباشرة
     </a>
   </div>
@@ -691,8 +692,13 @@
 <script>
   // Set min date to today
   const dateInput = document.getElementById('eventDate');
-  const today = new Date().toISOString().split('T')[0];
-  dateInput.min = today;
+  const now = new Date();
+  const localToday = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, '0'),
+    String(now.getDate()).padStart(2, '0')
+  ].join('-');
+  dateInput.min = localToday;
 
   function submitForm() {
     const groomName = document.getElementById('groomName').value.trim();
@@ -704,6 +710,8 @@
     // Validation
     if (!groomName) { alert('من فضلك أدخل اسم العريس'); return; }
     if (!groomPhone) { alert('من فضلك أدخل رقم التليفون'); return; }
+    if (!/^01\\d{9}$/.test(groomPhone)) { alert('من فضلك أدخل رقم موبايل مصري صحيح من 11 رقمًا ويبدأ بـ 01'); return; }
+    if (groomPhone2 && !/^01\\d{9}$/.test(groomPhone2)) { alert('من فضلك راجع الرقم البديل'); return; }
     if (!eventDate) { alert('من فضلك أدخل تاريخ عقد الزواج'); return; }
     if (!eventTime) { alert('من فضلك أدخل موعد عقد الزواج'); return; }
     if (!area) { alert('من فضلك اختر منطقة عقد الزواج'); return; }
