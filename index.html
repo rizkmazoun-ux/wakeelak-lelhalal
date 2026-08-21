@@ -700,9 +700,21 @@
   ].join('-');
   dateInput.min = localToday;
 
+  // Normalize phone numbers so Arabic/Persian digits, spaces, or separators do not cause false errors.
+  function normalizeEgyptPhone(value) {
+    return String(value || '')
+      .replace(/[٠-٩]/g, d => String(d.charCodeAt(0) - 1632))
+      .replace(/[۰-۹]/g, d => String(d.charCodeAt(0) - 1776))
+      .replace(/[^0-9]/g, '');
+  }
+
+  function isValidEgyptPhone(value) {
+    return /^01[0125][0-9]{8}$/.test(normalizeEgyptPhone(value));
+  }
+
   function submitForm() {
     const groomName = document.getElementById('groomName').value.trim();
-    const groomPhone = document.getElementById('groomPhone').value.trim();
+    const groomPhone = normalizeEgyptPhone(document.getElementById('groomPhone').value);
     const eventDate = document.getElementById('eventDate').value;
     const eventTime = document.getElementById('eventTime').value;
     const area = document.getElementById('area').value;
@@ -710,7 +722,7 @@
     // Validation
     if (!groomName) { alert('من فضلك أدخل اسم العريس'); return; }
     if (!groomPhone) { alert('من فضلك أدخل رقم التليفون'); return; }
-    if (!/^01\d{9}$/.test(groomPhone)) { alert('من فضلك أدخل رقم موبايل مصري صحيح من 11 رقمًا ويبدأ بـ 01'); return; }
+    if (!isValidEgyptPhone(groomPhone)) { alert('من فضلك أدخل رقم موبايل مصري صحيح من 11 رقمًا ويبدأ بـ 010 أو 011 أو 012 أو 015'); return; }
     if (!eventDate) { alert('من فضلك أدخل تاريخ عقد الزواج'); return; }
     if (!eventTime) { alert('من فضلك أدخل موعد عقد الزواج'); return; }
     if (!area) { alert('من فضلك اختر منطقة عقد الزواج'); return; }
@@ -718,8 +730,8 @@
     // Build WhatsApp message
     const address = document.getElementById('address').value.trim();
     const notes = document.getElementById('notes').value.trim();
-    const groomPhone2 = document.getElementById('groomPhone2').value.trim();
-    if (groomPhone2 && !/^01\d{9}$/.test(groomPhone2)) { alert('من فضلك راجع الرقم البديل'); return; }
+    const groomPhone2 = normalizeEgyptPhone(document.getElementById('groomPhone2').value);
+    if (groomPhone2 && !isValidEgyptPhone(groomPhone2)) { alert('من فضلك راجع الرقم البديل: يجب أن يبدأ بـ 010 أو 011 أو 012 أو 015 ويكون 11 رقمًا'); return; }
     const brideName = document.getElementById('brideName').value.trim();
     const brideAge = document.getElementById('brideAge').value.trim();
     const brideGuardian = document.getElementById('brideGuardian').value.trim();
