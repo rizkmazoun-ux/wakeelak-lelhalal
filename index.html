@@ -745,21 +745,27 @@
     if (!brideGuardian) { alert('من فضلك أدخل اسم ولي الأمر'); return; }
     if (!brideAddress) { alert('من فضلك أدخل عنوان العروسة'); return; }
 
-    let msg = `🌙 *طلب حجز عقد زواج - وكيلك للحلال*\n\n`;
-    msg += `👤 *اسم العريس:* ${groomName}\n`;
-    msg += `📞 *التليفون:* ${groomPhone}\n`;
-    if (groomPhone2) msg += `📞 *رقم بديل:* ${groomPhone2}\n`;
-    msg += `\n👰 *اسم العروسة:* ${brideName}\n`;
-    msg += `🎂 *سن العروسة:* ${brideAge} سنة\n`;
-    msg += `👨 *ولي الأمر:* ${brideGuardian}\n`;
-    msg += `🏠 *عنوان العروسة:* ${brideAddress}\n`;
-    if (mahrMoqadam) msg += `\n💰 *المهر المقدم:* ${mahrMoqadam}\n`;
-    if (mahrMoakhar) msg += `💰 *المهر المؤخر:* ${mahrMoakhar}\n`;
-    msg += `\n💍 *تاريخ عقد الزواج:* ${eventDate}\n`;
-    msg += `🕐 *موعد عقد الزواج:* ${eventTime}\n`;
-    msg += `📍 *منطقة عقد الزواج:* ${area}\n`;
-    if (address) msg += `🏠 *مكان عقد الزواج:* ${address}\n`;
-    if (notes) msg += `\n📝 *ملاحظات:* ${notes}\n`;
+    let msg = `طلب حجز عقد زواج - وكيلك للحلال\n\n`;
+    msg += `بيانات العريس\n`;
+    msg += `اسم العريس: ${groomName}\n`;
+    msg += `التليفون: ${groomPhone}\n`;
+    if (groomPhone2) msg += `رقم بديل: ${groomPhone2}\n`;
+
+    msg += `\nبيانات العروسة\n`;
+    msg += `اسم العروسة: ${brideName}\n`;
+    msg += `سن العروسة: ${brideAge} سنة\n`;
+    msg += `ولي الأمر: ${brideGuardian}\n`;
+    msg += `عنوان العروسة: ${brideAddress}\n`;
+
+    msg += `\nبيانات العقد\n`;
+    if (mahrMoqadam) msg += `المهر المقدم: ${mahrMoqadam}\n`;
+    if (mahrMoakhar) msg += `المهر المؤخر: ${mahrMoakhar}\n`;
+    msg += `تاريخ عقد الزواج: ${eventDate}\n`;
+    msg += `موعد عقد الزواج: ${eventTime}\n`;
+    msg += `منطقة عقد الزواج: ${area}\n`;
+    if (address) msg += `مكان عقد الزواج: ${address}\n`;
+
+    if (notes) msg += `\nملاحظات:\n${notes}\n`;
 
     const waUrl = `https://wa.me/201067359350?text=${encodeURIComponent(msg)}`;
     document.getElementById('waLink').href = waUrl;
