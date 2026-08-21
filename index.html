@@ -3,83 +3,236 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="وكيلك للحلال - وكيل مأذون بالقاهرة. حجز موعد عقد زواج ومتابعة إجراءات العقد داخل القاهرة.">
 <title>وكيلك للحلال | حجز موعد عقد زواج</title>
+
 <style>
 :root{
-  --navy:#061a38;
-  --navy2:#0b274d;
+  --navy:#071d3b;
+  --navy2:#0c2b55;
+  --navy3:#06162e;
   --gold:#d9a441;
   --gold2:#f0c15a;
+  --gold-soft:#e8c36c;
   --text:#f7f3e8;
   --muted:#c9c5bc;
   --border:rgba(217,164,65,.55);
+  --card:rgba(6,27,56,.78);
+  --input:#102b50;
+  --success:#2fcf72;
 }
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;
+  min-height:100vh;
   font-family:"Tahoma","Arial",sans-serif;
   color:var(--text);
   background:
     radial-gradient(circle at 50% -10%,#173866 0,transparent 42%),
-    linear-gradient(135deg,var(--navy),#031128 70%,#081d3c);
-  min-height:100vh;
+    linear-gradient(135deg,var(--navy),#031128 70%,var(--navy2));
+  line-height:1.7;
 }
 body:before{
   content:"";
-  position:fixed; inset:0; pointer-events:none; opacity:.12;
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.10;
   background-image:
     linear-gradient(30deg,transparent 24%,rgba(255,255,255,.18) 25%,transparent 26%),
     linear-gradient(150deg,transparent 24%,rgba(255,255,255,.12) 25%,transparent 26%);
   background-size:70px 70px;
 }
+a{color:inherit}
 .container{width:min(1080px,92%);margin:auto}
+section{scroll-margin-top:30px}
+
+/* Header */
 header{
   min-height:170px;
   position:relative;
   padding:22px 0 20px;
 }
-nav{
-  display:flex;gap:38px;align-items:center;
-  padding-right:390px; padding-left:0;
-  font-weight:700;
-}
-nav a{color:#fff;text-decoration:none;padding:10px 0}
-nav a.active{color:var(--gold2);border-bottom:2px solid var(--gold)}
 .brand{
-  position:absolute;right:0;top:18px;
-  display:flex;flex-direction:row-reverse;align-items:center;gap:16px;
+  position:absolute;
+  right:0;
+  top:18px;
+  display:flex;
+  flex-direction:row-reverse;
+  align-items:center;
+  gap:16px;
   z-index:2;
 }
 .brand-text{text-align:right}
 .brand-title{font-size:30px;font-weight:800}
 .brand-sub{font-size:15px;color:#ddd;margin-top:4px}
 .logo{
-  width:185px;height:185px;border:3px solid var(--gold2);
-  border-radius:50%;object-fit:cover;object-position:center;background:#fff;
+  width:185px;
+  height:185px;
+  border:3px solid var(--gold2);
+  border-radius:50%;
+  object-fit:cover;
+  object-position:center;
+  background:#fff;
   box-shadow:0 0 24px rgba(240,193,90,.22);
 }
+nav{
+  display:flex;
+  gap:38px;
+  align-items:center;
+  padding-right:390px;
+  font-weight:700;
+}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:10px 0;
+  transition:.2s;
+}
+nav a:hover,nav a.active{
+  color:var(--gold2);
+}
+nav a.active{border-bottom:2px solid var(--gold)}
+
+/* Hero */
 .hero{text-align:center;padding:30px 0 25px}
-.hero h1{font-size:clamp(42px,6vw,72px);margin:20px 0 8px;color:var(--gold2)}
+.hero h1{
+  font-size:clamp(42px,6vw,72px);
+  margin:20px 0 8px;
+  color:var(--gold2);
+  line-height:1.25;
+}
 .hero .line{width:260px;height:2px;background:var(--gold);margin:0 auto 18px}
 .hero p{font-size:22px;line-height:1.8;margin:4px 0}
+
+/* Highlights */
 .features{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  border:1px solid var(--border);border-radius:28px;
-  padding:18px;margin:10px auto 35px;background:rgba(7,30,61,.58)
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--border);
+  border-radius:28px;
+  padding:18px;
+  margin:10px auto 45px;
+  background:rgba(7,30,61,.58);
 }
-.feature{text-align:center;border-left:1px solid rgba(217,164,65,.3);padding:8px}
+.feature{
+  text-align:center;
+  border-left:1px solid rgba(217,164,65,.3);
+  padding:8px;
+}
 .feature:last-child{border-left:0}
 .feature b{display:block;font-size:19px;margin-bottom:5px}
 .feature span{color:var(--muted)}
-.section-title{text-align:center;color:var(--gold2);font-size:28px;margin:25px 0 5px}
-.section-sub{text-align:center;color:#eee;font-size:17px;margin-bottom:25px}
-.form{
-  border:1px solid var(--border);border-radius:30px;
-  padding:28px 38px 25px;background:rgba(4,24,51,.82);
-  box-shadow:0 18px 50px rgba(0,0,0,.22);
+
+/* Generic sections */
+.section-title{
+  text-align:center;
+  color:var(--gold2);
+  font-size:30px;
+  margin:35px 0 5px;
 }
-.form-section{padding:8px 0 25px;border-bottom:1px solid rgba(217,164,65,.25)}
+.section-sub{
+  text-align:center;
+  color:#eee;
+  font-size:17px;
+  margin:0 auto 25px;
+  max-width:780px;
+}
+
+/* Services */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin:0 auto 55px;
+}
+.card{
+  border:1px solid rgba(217,164,65,.35);
+  border-radius:20px;
+  background:rgba(5,25,52,.68);
+  padding:22px;
+  box-shadow:0 12px 35px rgba(0,0,0,.12);
+}
+.card-icon{
+  width:48px;height:48px;
+  display:grid;place-items:center;
+  border-radius:14px;
+  background:rgba(217,164,65,.14);
+  border:1px solid rgba(217,164,65,.4);
+  font-size:24px;
+  margin-bottom:12px;
+}
+.card h3{margin:0 0 8px;color:var(--gold-soft);font-size:20px}
+.card p{margin:0;color:#ddd}
+
+/* Steps */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin:0 auto 55px;
+}
+.step{
+  position:relative;
+  text-align:center;
+  border:1px solid rgba(217,164,65,.35);
+  border-radius:20px;
+  background:rgba(5,25,52,.68);
+  padding:22px 14px;
+}
+.step-num{
+  width:42px;height:42px;
+  margin:0 auto 10px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#17233a;
+  font-weight:900;
+}
+.step h3{margin:0 0 6px;color:var(--gold-soft)}
+.step p{margin:0;color:#ddd;font-size:14px}
+
+/* About / Contact */
+.info-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-bottom:55px;
+}
+.info-box{
+  border:1px solid rgba(217,164,65,.35);
+  border-radius:22px;
+  background:rgba(5,25,52,.68);
+  padding:25px;
+}
+.info-box h3{color:var(--gold-soft);margin-top:0}
+.info-box p{color:#ddd}
+.contact-list{list-style:none;padding:0;margin:0}
+.contact-list li{
+  padding:10px 0;
+  border-bottom:1px solid rgba(217,164,65,.16);
+}
+.contact-list li:last-child{border-bottom:0}
+.contact-list a{
+  color:var(--gold-soft);
+  text-decoration:none;
+}
+
+/* Form */
+.form{
+  border:1px solid var(--border);
+  border-radius:30px;
+  padding:28px 38px 25px;
+  background:var(--card);
+  box-shadow:0 18px 50px rgba(0,0,0,.22);
+  margin-bottom:55px;
+}
+.form-section{
+  padding:8px 0 25px;
+  border-bottom:1px solid rgba(217,164,65,.25);
+}
 .form-section:last-of-type{border-bottom:0}
 .form h2{color:var(--gold2);font-size:24px;margin:8px 0 5px}
 .form-note{color:#ccc;margin-bottom:18px}
@@ -88,34 +241,96 @@ nav a.active{color:var(--gold2);border-bottom:2px solid var(--gold)}
 label{display:block;font-weight:700;margin-bottom:8px}
 label .req{color:#ff6b5c}
 input,select,textarea{
-  width:100%;padding:15px 16px;border-radius:12px;
+  width:100%;
+  padding:15px 16px;
+  border-radius:12px;
   border:1px solid rgba(255,255,255,.22);
-  background:#102b50;color:#fff;font-size:16px;outline:none;
+  background:var(--input);
+  color:#fff;
+  font-size:16px;
+  outline:none;
 }
-input:focus,select:focus,textarea:focus{border-color:var(--gold2);box-shadow:0 0 0 2px rgba(240,193,90,.12)}
+input::placeholder,textarea::placeholder{color:#aeb4bd}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--gold2);
+  box-shadow:0 0 0 2px rgba(240,193,90,.12);
+}
 textarea{min-height:95px;resize:vertical}
 .actions{margin-top:10px}
 button{
-  width:100%;border:0;border-radius:14px;padding:17px;
-  font-size:21px;font-weight:800;cursor:pointer;
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:17px;
+  font-size:21px;
+  font-weight:800;
+  cursor:pointer;
   background:linear-gradient(90deg,var(--gold),var(--gold2));
   color:#101010;
+  transition:transform .15s,filter .15s;
 }
-.privacy{text-align:center;color:#e8c36c;margin:14px 0 0}
-footer{text-align:center;color:#aaa;padding:28px 0 35px;font-size:14px}
+button:hover{filter:brightness(1.05);transform:translateY(-1px)}
+button:disabled{opacity:.7;cursor:wait;transform:none}
+.privacy{text-align:center;color:var(--gold-soft);margin:14px 0 0}
+.error{
+  display:none;
+  margin:0 0 16px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:rgba(220,60,60,.12);
+  border:1px solid rgba(255,100,100,.35);
+  color:#ffd1d1;
+}
+.success{
+  display:none;
+  text-align:center;
+  border:1px solid rgba(47,207,114,.35);
+  background:rgba(47,207,114,.08);
+  border-radius:18px;
+  padding:22px;
+  margin-top:18px;
+}
+.success strong{color:var(--success)}
+
+/* Footer */
+footer{
+  border-top:1px solid rgba(217,164,65,.22);
+  text-align:center;
+  color:#aaa;
+  padding:30px 0 38px;
+  font-size:14px;
+}
+.footer-brand{color:var(--gold-soft);font-weight:800;font-size:18px}
+.footer-contact{margin-top:7px}
+.footer-contact a{color:#ddd;text-decoration:none}
+
+/* Mobile */
 @media(max-width:850px){
   header{min-height:260px}
-  nav{padding:0;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:190px}
-  .brand{right:50%;transform:translateX(50%);top:12px}
+  nav{
+    padding:0;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-top:190px;
+  }
+  .brand{
+    right:50%;
+    transform:translateX(50%);
+    top:12px;
+  }
   .brand-text{display:none}
   .logo{width:150px;height:150px}
+  .cards{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
 }
 @media(max-width:620px){
   .container{width:94%}
   nav{font-size:14px;gap:14px}
   .hero{padding-top:20px}
+  .hero h1{font-size:38px}
   .hero p{font-size:17px}
-  .features{grid-template-columns:1fr;gap:5px}
+  .features,.cards,.steps,.info-grid{grid-template-columns:1fr}
   .feature{border-left:0;border-bottom:1px solid rgba(217,164,65,.25)}
   .feature:last-child{border-bottom:0}
   .form{padding:20px 16px}
@@ -124,182 +339,371 @@ footer{text-align:center;color:#aaa;padding:28px 0 35px;font-size:14px}
 }
 </style>
 </head>
+
 <body>
+
 <header>
-<div class="container">
-  <div class="brand">
-    <div class="brand-text">
-      <div class="brand-title">وكيلك للحلال</div>
-      <div class="brand-sub">تيسير أمور الزواج بعون الله</div>
+  <div class="container">
+    <div class="brand">
+      <div class="brand-text">
+        <div class="brand-title">وكيلك للحلال</div>
+        <div class="brand-sub">تيسير أمور الزواج بعون الله</div>
+      </div>
+      <img class="logo" src="logo_main.jpg" alt="وكيلك للحلال - وكيل مأذون بالقاهرة">
     </div>
-    <img class="logo" src="logo_main.jpg" alt="وكيلك للحلال - وكيل مأذون بالقاهرة">
+
+    <nav aria-label="التنقل الرئيسي">
+      <a class="active" href="#home">الرئيسية</a>
+      <a href="#services">خدماتنا</a>
+      <a href="#steps">خطوات العمل</a>
+      <a href="#about">من نحن</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
   </div>
-  <nav>
-    <a class="active" href="#home">الرئيسية</a>
-    <a href="#services">خدماتنا</a>
-    <a href="#steps">خطوات العمل</a>
-    <a href="#about">من نحن</a>
-    <a href="#contact">تواصل معنا</a>
-  </nav>
-</div>
 </header>
 
 <main id="home" class="container">
-<section class="hero">
-  <h1>حجز موعد عقد زواج</h1>
-  <div class="line"></div>
-  <p>معنا.. نيسر عليك كل الإجراءات</p>
-  <p>وأنت في مكانك <span style="color:var(--gold2)">♥</span></p>
-</section>
 
-<section id="services" class="features">
-  <div class="feature"><b>🔒 خصوصية تامة</b><span>بياناتك في أمان</span></div>
-  <div class="feature"><b>🛡️ موثوق ومعتمد</b><span>خدمة رسمية موثوقة</span></div>
-  <div class="feature"><b>◷ سرعة في الإنجاز</b><span>في أسرع وقت</span></div>
-</section>
+  <section class="hero" aria-labelledby="hero-title">
+    <h1 id="hero-title">حجز موعد عقد زواج</h1>
+    <div class="line"></div>
+    <p>معنا.. نيسر عليك كل الإجراءات</p>
+    <p>وأنت في مكانك <span style="color:var(--gold2)">♥</span></p>
+  </section>
 
-<section id="steps">
-  <h2 class="section-title">سهلها وأنجز</h2>
-  <p class="section-sub">احجز موعد عقد زواجك داخل القاهرة وسنختار لك في المكان المناسب ليك</p>
-</section>
+  <section class="features" aria-label="مميزات الخدمة">
+    <div class="feature">
+      <b>🔒 خصوصية تامة</b>
+      <span>بياناتك في أمان</span>
+    </div>
+    <div class="feature">
+      <b>🛡️ موثوق ومعتمد</b>
+      <span>خدمة رسمية موثوقة</span>
+    </div>
+    <div class="feature">
+      <b>◷ سرعة في الإنجاز</b>
+      <span>في أسرع وقت</span>
+    </div>
+  </section>
 
-<form class="form" id="bookingForm">
-  <section class="form-section">
-    <h2>بيانات العريس</h2>
-    <div class="form-note">الاسم ووسيلة التواصل</div>
-    <div class="grid">
-      <div class="field full">
-        <label>اسم العريس <span class="req">*</span></label>
-        <input id="groomName" required placeholder="اكتب اسم العريس">
+  <section id="services">
+    <h2 class="section-title">خدماتنا</h2>
+    <p class="section-sub">نساعدك في تجهيز عقد الزواج وكتب الكتاب ومراجعة الأوراق ومتابعة إجراءات التوثيق مع المأذون.</p>
+
+    <div class="cards">
+      <article class="card">
+        <div class="card-icon">💍</div>
+        <h3>تجهيز عقد الزواج وكتب الكتاب</h3>
+        <p>مساعدتك في تجهيز بيانات الحجز وترتيب الإجراءات المطلوبة.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">📄</div>
+        <h3>مراجعة الأوراق</h3>
+        <p>مراجعة البيانات والمستندات المطلوبة قبل استكمال الإجراءات.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">🤝</div>
+        <h3>متابعة إجراءات التوثيق</h3>
+        <p>متابعة الإجراءات مع المأذون وتنسيق الموعد والمكان المناسب.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="steps">
+    <h2 class="section-title">خطوات العمل</h2>
+    <p class="section-sub">خطوات بسيطة من الحجز وحتى التنسيق مع المأذون.</p>
+
+    <div class="steps">
+      <article class="step">
+        <div class="step-num">1</div>
+        <h3>احجز</h3>
+        <p>املأ بيانات الحجز المطلوبة بدقة.</p>
+      </article>
+      <article class="step">
+        <div class="step-num">2</div>
+        <h3>نراجع البيانات</h3>
+        <p>نراجع البيانات المرسلة وننسق معك.</p>
+      </article>
+      <article class="step">
+        <div class="step-num">3</div>
+        <h3>ننسق الموعد</h3>
+        <p>يتم التنسيق على الموعد والمكان المناسب.</p>
+      </article>
+      <article class="step">
+        <div class="step-num">4</div>
+        <h3>إتمام الإجراءات</h3>
+        <p>متابعة إجراءات العقد والتوثيق مع المأذون.</p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="booking-title">
+    <h2 id="booking-title" class="section-title">احجز موعد عقد زواج</h2>
+    <p class="section-sub">احجز موعد عقد زواجك داخل القاهرة وسننسق معك في المكان المناسب ليك.</p>
+
+    <form class="form" id="bookingForm" novalidate>
+
+      <div class="error" id="formError" role="alert"></div>
+
+      <section class="form-section">
+        <h2>بيانات العريس</h2>
+        <div class="form-note">الاسم ووسيلة التواصل</div>
+
+        <div class="grid">
+          <div class="field full">
+            <label for="groomName">اسم العريس <span class="req">*</span></label>
+            <input id="groomName" required autocomplete="name" placeholder="اكتب اسم العريس">
+          </div>
+
+          <div class="field">
+            <label for="phone">رقم التليفون <span class="req">*</span></label>
+            <input id="phone" required inputmode="numeric" maxlength="13" autocomplete="tel" placeholder="01XXXXXXXXX">
+          </div>
+
+          <div class="field">
+            <label for="altPhone">رقم بديل (اختياري)</label>
+            <input id="altPhone" inputmode="numeric" maxlength="13" autocomplete="tel" placeholder="01XXXXXXXXX">
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>بيانات العروسة</h2>
+
+        <div class="grid">
+          <div class="field">
+            <label for="brideName">اسم العروسة <span class="req">*</span></label>
+            <input id="brideName" required placeholder="اكتب اسم العروسة">
+          </div>
+
+          <div class="field">
+            <label for="brideAge">سن العروسة <span class="req">*</span></label>
+            <select id="brideAge" required>
+              <option value="">اختر السن</option>
+              <option>18 سنة</option><option>19 سنة</option><option>20 سنة</option>
+              <option>21 سنة</option><option>22 سنة</option><option>23 سنة</option>
+              <option>24 سنة</option><option>25 سنة</option><option>26 سنة</option>
+              <option>27 سنة</option><option>28 سنة</option><option>29 سنة</option>
+              <option>30 سنة</option><option>أكثر من 30 سنة</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="guardian">ولي الأمر <span class="req">*</span></label>
+            <input id="guardian" required placeholder="اكتب اسم ولي الأمر">
+          </div>
+
+          <div class="field">
+            <label for="brideAddress">عنوان العروسة <span class="req">*</span></label>
+            <input id="brideAddress" required placeholder="اكتب عنوان العروسة بالتفصيل">
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>بيانات عقد الزواج</h2>
+
+        <div class="grid">
+          <div class="field">
+            <label for="mahr">المهر المقدم <span class="req">*</span></label>
+            <input id="mahr" required inputmode="numeric" placeholder="اكتب المبلغ">
+          </div>
+
+          <div class="field">
+            <label for="mahrLater">المهر المؤخر (اختياري)</label>
+            <input id="mahrLater" inputmode="numeric" placeholder="اكتب المبلغ">
+          </div>
+
+          <div class="field">
+            <label for="date">تاريخ عقد الزواج <span class="req">*</span></label>
+            <input id="date" type="date" required>
+          </div>
+
+          <div class="field">
+            <label for="time">موعد عقد الزواج <span class="req">*</span></label>
+            <input id="time" type="time" required>
+          </div>
+
+          <div class="field">
+            <label for="area">منطقة عقد الزواج <span class="req">*</span></label>
+            <select id="area" required>
+              <option value="">اختر المنطقة</option>
+              <option>مدينة نصر</option><option>مصر الجديدة</option><option>المعادي</option>
+              <option>التجمع</option><option>الشروق</option><option>عين شمس</option>
+              <option>المطرية</option><option>حلوان</option><option>وسط القاهرة</option>
+              <option>الجيزة</option><option>أخرى داخل القاهرة الكبرى</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="place">مكان عقد الزواج <span class="req">*</span></label>
+            <input id="place" required placeholder="اكتب مكان عقد الزواج بالتفصيل">
+          </div>
+
+          <div class="field full">
+            <label for="notes">ملاحظات إضافية (اختياري)</label>
+            <textarea id="notes" placeholder="اكتب أي ملاحظات إضافية"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button id="submitBtn" type="submit">إرسال الحجز عبر واتساب ☎</button>
+        <p class="privacy">🛡 نحن لا نشارك بياناتك مع أي جهة خارجية</p>
       </div>
-      <div class="field">
-        <label>رقم التليفون <span class="req">*</span></label>
-        <input id="phone" required inputmode="numeric" placeholder="01123456789">
+
+      <div class="success" id="successMsg" role="status">
+        <strong>تم تجهيز طلب الحجز.</strong>
+        <div>سيتم فتح واتساب برسالة البيانات لإرسالها.</div>
       </div>
-      <div class="field">
-        <label>رقم بديل (اختياري)</label>
-        <input id="altPhone" inputmode="numeric" placeholder="01123456789">
+    </form>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">من نحن</h2>
+    <p class="section-sub">وكيلك للحلال — وكيل مأذون بالقاهرة. نساعدك في تجهيز عقد الزواج وكتب الكتاب ومراجعة الأوراق ومتابعة إجراءات التوثيق مع المأذون.</p>
+
+    <div class="info-grid">
+      <div class="info-box">
+        <h3>خدمة داخل القاهرة</h3>
+        <p>بنجيلك في المكان المناسب ليك داخل القاهرة، مع التنسيق المسبق للموعد والمكان.</p>
+      </div>
+
+      <div class="info-box" id="contact">
+        <h3>تواصل معنا</h3>
+        <ul class="contact-list">
+          <li>📞 <a href="tel:+201067359350">01067359350</a></li>
+          <li>💬 <a href="https://wa.me/201067359350" target="_blank" rel="noopener">واتساب</a></li>
+          <li>✉️ <a href="mailto:rizk.mazoun@gmail.com">rizk.mazoun@gmail.com</a></li>
+          <li>📍 القاهرة — مصر</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="form-section">
-    <h2>بيانات العروسة</h2>
-    <div class="grid">
-      <div class="field">
-        <label>اسم العروسة <span class="req">*</span></label>
-        <input id="brideName" required placeholder="اكتب اسم العروسة">
-      </div>
-      <div class="field">
-        <label>سن العروسة <span class="req">*</span></label>
-        <select id="brideAge" required>
-          <option value="">اختر السن</option>
-          <option>18 سنة</option><option>19 سنة</option><option>20 سنة</option>
-          <option>21 سنة</option><option>22 سنة</option><option>23 سنة</option>
-          <option>24 سنة</option><option>25 سنة</option><option>26 سنة</option>
-          <option>27 سنة</option><option>28 سنة</option><option>29 سنة</option>
-          <option>30 سنة</option><option>أكثر من 30 سنة</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>ولي الأمر <span class="req">*</span></label>
-        <input id="guardian" required placeholder="اكتب اسم ولي الأمر">
-      </div>
-      <div class="field">
-        <label>عنوان العروسة <span class="req">*</span></label>
-        <input id="brideAddress" required placeholder="اكتب عنوان العروسة بالتفصيل">
-      </div>
-    </div>
-  </section>
-
-  <section class="form-section">
-    <h2>بيانات عقد الزواج</h2>
-    <div class="grid">
-      <div class="field">
-        <label>المهر المقدم <span class="req">*</span></label>
-        <input id="mahr" required placeholder="اكتب المبلغ">
-      </div>
-      <div class="field">
-        <label>المهر المؤخر (اختياري)</label>
-        <input id="mahrLater" placeholder="اكتب المبلغ">
-      </div>
-      <div class="field">
-        <label>تاريخ عقد الزواج <span class="req">*</span></label>
-        <input id="date" type="date" required>
-      </div>
-      <div class="field">
-        <label>موعد عقد الزواج <span class="req">*</span></label>
-        <input id="time" type="time" required>
-      </div>
-      <div class="field">
-        <label>منطقة عقد الزواج <span class="req">*</span></label>
-        <select id="area" required>
-          <option value="">اختر المنطقة</option>
-          <option>مدينة نصر</option><option>مصر الجديدة</option><option>المعادي</option>
-          <option>التجمع</option><option>الشروق</option><option>عين شمس</option>
-          <option>المطرية</option><option>حلوان</option><option>وسط القاهرة</option>
-          <option>الجيزة</option><option>أخرى داخل القاهرة الكبرى</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>مكان عقد الزواج <span class="req">*</span></label>
-        <input id="place" required placeholder="اكتب مكان عقد الزواج بالتفصيل">
-      </div>
-      <div class="field full">
-        <label>ملاحظات إضافية (اختياري)</label>
-        <textarea id="notes" placeholder="اكتب أي ملاحظات إضافية"></textarea>
-      </div>
-    </div>
-  </section>
-
-  <div class="actions">
-    <button type="submit">إرسال الحجز عبر واتساب ☎</button>
-    <p class="privacy">🛡 نحن لا نشارك بياناتك مع أي جهة خارجية</p>
-  </div>
-</form>
 </main>
 
-<footer id="about">وكيلك للحلال — وكيل مأذون بالقاهرة</footer>
+<footer>
+  <div class="footer-brand">وكيلك للحلال</div>
+  <div>وكيل مأذون بالقاهرة</div>
+  <div class="footer-contact">
+    <a href="tel:+201067359350">01067359350</a>
+    &nbsp; | &nbsp;
+    <a href="https://wa.me/201067359350" target="_blank" rel="noopener">واتساب</a>
+  </div>
+</footer>
 
 <script>
-const form=document.getElementById('bookingForm');
-const digitsOnly=s=>(s||'').replace(/\D/g,'');
-function normalizeEgyptian(raw){
-  let n=digitsOnly(raw);
-  if(n.startsWith('20')) n=n.slice(2);
-  if(n.startsWith('0')) n=n.slice(1);
+const form = document.getElementById('bookingForm');
+const errorBox = document.getElementById('formError');
+const successMsg = document.getElementById('successMsg');
+const submitBtn = document.getElementById('submitBtn');
+
+function toEnglishDigits(value){
+  return String(value || '')
+    .replace(/[٠-٩]/g, d => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)))
+    .replace(/[۰-۹]/g, d => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));
+}
+
+function normalizeEgyptPhone(raw){
+  let n = toEnglishDigits(raw).replace(/[^\d+]/g,'');
+  if(n.startsWith('+20')) n = '0' + n.slice(3);
+  else if(n.startsWith('20') && n.length === 12) n = '0' + n.slice(2);
   return n;
 }
-form.addEventListener('submit',e=>{
+
+function isValidEgyptPhone(raw){
+  const n = normalizeEgyptPhone(raw);
+  return /^(010|011|012|015)\d{8}$/.test(n);
+}
+
+function showError(message){
+  errorBox.textContent = message;
+  errorBox.style.display = 'block';
+  errorBox.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function clearError(){
+  errorBox.textContent = '';
+  errorBox.style.display = 'none';
+}
+
+function formatArabicDate(value){
+  if(!value) return '—';
+  const [y,m,d] = value.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+function formatArabicTime(value){
+  if(!value) return '—';
+  const [h,minute] = value.split(':').map(Number);
+  const suffix = h >= 12 ? 'م' : 'ص';
+  const hour12 = h % 12 || 12;
+  return `${String(hour12).padStart(2,'0')}:${String(minute).padStart(2,'0')} ${suffix}`;
+}
+
+/* منع اختيار تاريخ سابق لليوم */
+const dateInput = document.getElementById('date');
+const today = new Date();
+const localToday =
+  today.getFullYear() + '-' +
+  String(today.getMonth()+1).padStart(2,'0') + '-' +
+  String(today.getDate()).padStart(2,'0');
+dateInput.min = localToday;
+
+form.addEventListener('submit', function(e){
   e.preventDefault();
-  const phone=document.getElementById('phone').value.trim();
-  const n=normalizeEgyptian(phone);
-  if(n.length!==10 || !n.startsWith('1')){
-    alert('من فضلك أدخل رقم موبايل مصري صحيح من 11 رقم يبدأ بـ 01');
+  clearError();
+
+  if(!form.checkValidity()){
+    form.reportValidity();
     return;
   }
-  const data={
-    groom:document.getElementById('groomName').value,
-    phone:phone,
-    alt:document.getElementById('altPhone').value,
-    bride:document.getElementById('brideName').value,
-    age:document.getElementById('brideAge').value,
-    guardian:document.getElementById('guardian').value,
-    address:document.getElementById('brideAddress').value,
-    mahr:document.getElementById('mahr').value,
-    mahrLater:document.getElementById('mahrLater').value,
-    date:document.getElementById('date').value,
-    time:document.getElementById('time').value,
-    area:document.getElementById('area').value,
-    place:document.getElementById('place').value,
-    notes:document.getElementById('notes').value
+
+  const phone = normalizeEgyptPhone(document.getElementById('phone').value);
+  const altPhoneRaw = document.getElementById('altPhone').value.trim();
+  const altPhone = altPhoneRaw ? normalizeEgyptPhone(altPhoneRaw) : '';
+
+  if(!isValidEgyptPhone(phone)){
+    showError('من فضلك أدخل رقم موبايل مصري صحيح من 11 رقمًا يبدأ بـ 010 أو 011 أو 012 أو 015.');
+    return;
+  }
+
+  if(altPhone && !isValidEgyptPhone(altPhone)){
+    showError('من فضلك راجع الرقم البديل: يجب أن يكون رقم موبايل مصريًا صحيحًا من 11 رقمًا.');
+    return;
+  }
+
+  const selectedDate = document.getElementById('date').value;
+  if(selectedDate < localToday){
+    showError('من فضلك اختر تاريخًا اليوم أو بعده.');
+    return;
+  }
+
+  const data = {
+    groom: document.getElementById('groomName').value.trim(),
+    phone,
+    alt: altPhone,
+    bride: document.getElementById('brideName').value.trim(),
+    age: document.getElementById('brideAge').value,
+    guardian: document.getElementById('guardian').value.trim(),
+    address: document.getElementById('brideAddress').value.trim(),
+    mahr: document.getElementById('mahr').value.trim(),
+    mahrLater: document.getElementById('mahrLater').value.trim(),
+    date: selectedDate,
+    time: document.getElementById('time').value,
+    area: document.getElementById('area').value,
+    place: document.getElementById('place').value.trim(),
+    notes: document.getElementById('notes').value.trim()
   };
-  const msg=`طلب حجز عقد زواج - وكيلك للحلال
+
+  const msg =
+`طلب حجز عقد زواج - وكيلك للحلال
 
 بيانات العريس:
 اسم العريس: ${data.groom}
 التليفون: ${data.phone}
-رقم بديل: ${data.alt||'—'}
+رقم بديل: ${data.alt || '—'}
 
 بيانات العروسة:
 اسم العروسة: ${data.bride}
@@ -309,15 +713,52 @@ form.addEventListener('submit',e=>{
 
 بيانات العقد:
 المهر المقدم: ${data.mahr}
-المهر المؤخر: ${data.mahrLater||'—'}
-تاريخ العقد: ${data.date}
-موعد العقد: ${data.time}
-منطقة العقد: ${data.area}
-مكان العقد: ${data.place}
-ملاحظات: ${data.notes||'—'}`;
-  const whatsapp='201067359350';
-  window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`,'_blank');
+المهر المؤخر: ${data.mahrLater || '—'}
+تاريخ عقد الزواج: ${formatArabicDate(data.date)}
+موعد عقد الزواج: ${formatArabicTime(data.time)}
+منطقة عقد الزواج: ${data.area}
+مكان عقد الزواج: ${data.place}
+ملاحظات: ${data.notes || '—'}`;
+
+  const whatsapp = '201067359350';
+  const waUrl = `https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`;
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'جاري تجهيز رسالة واتساب...';
+  successMsg.style.display = 'block';
+
+  setTimeout(() => {
+    window.open(waUrl, '_blank', 'noopener');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'إرسال الحجز عبر واتساب ☎';
+  }, 350);
+});
+
+/* تمييز القسم الحالي في القائمة */
+const sections = [
+  document.getElementById('home'),
+  document.getElementById('services'),
+  document.getElementById('steps'),
+  document.getElementById('about'),
+  document.getElementById('contact')
+];
+const navLinks = [...document.querySelectorAll('nav a')];
+
+const observer = new IntersectionObserver(entries => {
+  const visible = entries
+    .filter(entry => entry.isIntersecting)
+    .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+  if(!visible) return;
+
+  const id = '#' + visible.target.id;
+  navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === id));
+}, {threshold:[0.15,0.35,0.6]});
+
+sections.forEach(section => {
+  if(section) observer.observe(section);
 });
 </script>
+
 </body>
 </html>
